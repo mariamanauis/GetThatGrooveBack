@@ -24,6 +24,10 @@ package GetThatGrooveBack;
     public double getSalary(){
         return salary;
     }
+  
+  public double getMoney(){
+        return money;
+    }
     
     public void promote(){
         //to be discussed
