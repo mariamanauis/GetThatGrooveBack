@@ -10,7 +10,7 @@ package GetThatGrooveBack;
  */
  public abstract class Person implements Advertise, Interactable  {
     protected String name;
-    protected double salary;
+    protected double money, salary;
     
     public Person(String n){
         name = n;
