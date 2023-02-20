@@ -7,10 +7,9 @@ package getthatgrooveback;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
-
 /**
  *
- * @author Jillian
+ * @author HP
  */
 public class Event {
     protected String name;

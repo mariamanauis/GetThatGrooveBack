@@ -5,16 +5,17 @@
 package getthatgrooveback;
 
 import java.util.ArrayList;
-
 /**
  *
- * @author Jillian
+ * @author HP
  */
 public class Manager extends Person implements Advertise{
     protected ArrayList<Group> groupsManaged = new ArrayList<>();
     
-    public Manager(String n){
-        super(n);
+    public Manager(String n, String i){
+        super(n, i);
+        name = n;
+        imgFileName = i;
     }
     
     public void checkGroupsManaged(){

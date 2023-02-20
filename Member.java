@@ -2,10 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package GetThatGrooveBack;
+package getthatgrooveback;
 
 import java.util.ArrayList;
-
 /**
  *
  * @author HP
@@ -14,8 +13,13 @@ public class Member extends Person {
     protected ArrayList<String> Skills = new ArrayList<>();
     protected int popularityPoints, relationshipPoints;
     
-    public Member(String n, String s,int p, int r){
-        super(n);
+    public Member(String n, String i, String s,int p, int r){
+        super(n, i);
+        name = n;
+        imgFileName = i;
+        popularityPoints = p;
+        relationshipPoints = r;
+        
     }
     
     public void checkSkills(){

@@ -2,18 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package GetThatGrooveBack;
+package getthatgrooveback;
 
 /**
  *
  * @author HP
  */
- public abstract class Person implements Advertise, Interactable  {
-    protected String name;
+public abstract class Person implements Advertise, Interactable  {
+    protected String name, imgFileName;
     protected double money, salary;
     
-    public Person(String n){
+    public Person(String n, String i){
         name = n;
+        imgFileName = i;
         salary = 0;
     }
     
@@ -28,6 +29,10 @@ package GetThatGrooveBack;
   public double getMoney(){
         return money;
     }
+  
+  public String getImgFileName(){
+      return imgFileName;
+  }
     
     public void promote(){
         //to be discussed

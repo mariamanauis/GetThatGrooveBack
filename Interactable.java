@@ -6,7 +6,7 @@ package getthatgrooveback;
 
 /**
  *
- * @author Jillian
+ * @author HP
  */
 public interface Interactable {
     void interact();
