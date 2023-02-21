@@ -8,6 +8,6 @@ package getthatgrooveback;
  *
  * @author HP
  */
-public interface Advertise {
+public interface Advertisable {
     void promote();
 }
