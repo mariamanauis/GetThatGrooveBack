@@ -8,7 +8,7 @@ package getthatgrooveback;
  *
  * @author HP
  */
-public abstract class Person implements Advertise, Interactable  {
+public abstract class Person implements Advertisable, Interactable  {
     protected String name, imgFileName;
     protected double money, salary;
     

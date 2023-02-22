@@ -9,7 +9,7 @@ import java.util.ArrayList;
  *
  * @author HP
  */
-public class Group implements Advertise, Interactable {
+public class Group implements Advertisable, Interactable {
     protected String name, fandomName;
     protected ArrayList<Member> memberList = new ArrayList<>();
     protected int popularityPoints, noOfFans;

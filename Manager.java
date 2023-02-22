@@ -9,7 +9,7 @@ import java.util.ArrayList;
  *
  * @author HP
  */
-public class Manager extends Person implements Advertise{
+public class Manager extends Person implements Advertisable{
     protected ArrayList<Group> groupsManaged = new ArrayList<>();
     
     public Manager(String n, String i){

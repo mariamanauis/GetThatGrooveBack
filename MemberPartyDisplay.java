@@ -7,7 +7,7 @@ package getthatgrooveback;
 import javax.swing.*;
 import java.awt.*;
 /**
- *
+ * 
  * @author HP
  */
 public class MemberPartyDisplay extends JFrame {
@@ -17,12 +17,13 @@ public class MemberPartyDisplay extends JFrame {
     private static int maxRows = 2;
     
     public MemberPartyDisplay(Member[] party){
+        super("Get That Groove Back!");
         footer = new JLabel("Choose Your Artists!");
         remaining = new JLabel("[SLOTS LEFT: 3]");
         southPanel = new JPanel();
         main = new JPanel();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(200*maxCols, 200*maxRows);
+        this.setSize(300*maxCols, 300*maxRows);
         this.setLayout(new BorderLayout(10, 10));
         this.add(southPanel, BorderLayout.SOUTH);
         this.add(main, BorderLayout.CENTER);
