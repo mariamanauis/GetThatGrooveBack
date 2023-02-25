@@ -8,7 +8,8 @@ package getthatgrooveback;
  *
  * @author HP
  */
-public class main {
+public class main{
+    
     public static void main(String[] args){
         /*Member[] party = new Member[6];
         party[0] = new Member("Jark Pihyo", "biology.png", "dancing", 0, 0);
@@ -23,9 +24,10 @@ public class main {
         Event event1 = new Event("MKNS Stage", "biology.png", 200, "location", 1000, true);
         ReservingEventDisplay frame2 = new ReservingEventDisplay(event1);
         
+        
         //frame1.setVisible(true);
         frame2.setVisible(true);
-        
+
         
     }
 }
