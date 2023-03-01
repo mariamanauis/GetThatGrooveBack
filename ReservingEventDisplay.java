@@ -19,12 +19,9 @@ public class ReservingEventDisplay extends JFrame {
         super("Get That Groove Back!");
         this.setLayout(new BorderLayout(10, 10));
         
-        /*ImageIcon background = new ImageIcon(ReservingEventDisplay.class.getResource("bg.png"));
-        JLabel backgroundLabel = new JLabel("", background, JLabel.CENTER);
-        backgroundLabel.setBounds(0, 0, 900, 600);
-        this.getContentPane().add(backgroundLabel);*/
-        this.budget = new JLabel("Budget: ");
         
+        this.budget = new JLabel("Budget: ");
+        budget.setFont(new Font("Futura Bold", Font.PLAIN, 24));
         centerPanel = new JPanel();
         centerPanel.setLayout(new GridBagLayout());
         GridBagConstraints con = new GridBagConstraints();
@@ -41,6 +38,7 @@ public class ReservingEventDisplay extends JFrame {
         centerPanel.add(eventImg, con);
         
         name = new JLabel(e.getName());
+        name.setFont(new Font("Futura Bold", Font.PLAIN, 36));
         con.gridwidth = 1;
         con.gridheight = 1;
         con.gridx = 1;
@@ -48,6 +46,7 @@ public class ReservingEventDisplay extends JFrame {
         centerPanel.add(name, con);
         
         location = new JLabel("Location: " + e.getLocation());
+        location.setFont(new Font("Futura Bold", Font.PLAIN, 24));
         con.gridwidth = 1;
         con.gridheight = 1;
         con.gridx = 1;
@@ -55,6 +54,7 @@ public class ReservingEventDisplay extends JFrame {
         centerPanel.add(location, con);
         
         entrance = new JLabel("Entrance Fee: " + String.valueOf(e.getEntranceFee())); 
+        entrance.setFont(new Font("Futura Bold", Font.PLAIN, 24));
         con.gridwidth = 1;
         con.gridheight = 1;
         con.gridx = 1;
@@ -62,6 +62,7 @@ public class ReservingEventDisplay extends JFrame {
         centerPanel.add(entrance, con);
         
         cost = new JLabel("Cost: " + String.valueOf(e.getCost()));
+        cost.setFont(new Font("Futura Bold", Font.PLAIN, 24));
         con.gridwidth = 1;
         con.gridheight = 1;
         con.gridx = 1;
@@ -69,6 +70,7 @@ public class ReservingEventDisplay extends JFrame {
         centerPanel.add(cost, con);
         
         availability = new JLabel("Availability: " + String.valueOf(e.getAvailability()));
+        availability.setFont(new Font("Futura Bold", Font.PLAIN, 24));
         con.gridwidth = 1;
         con.gridheight = 1;
         con.gridx = 1;
@@ -83,6 +85,7 @@ public class ReservingEventDisplay extends JFrame {
         c.fill = GridBagConstraints.HORIZONTAL;
         
         question = new JLabel("Reserve this event?");
+        question.setFont(new Font("Futura Bold", Font.PLAIN, 24));
         c.gridwidth = 2;
         c.gridx = 0;
         c.gridy = 0;
@@ -91,12 +94,14 @@ public class ReservingEventDisplay extends JFrame {
         southPanel.add(question, c);
         
         yes = new JButton("Yes");
+        yes.setFont(new Font("Futura Bold", Font.PLAIN, 20));
         c.gridwidth = 1;
         c.gridx = 0;
         c.gridy = 1;
         southPanel.add(yes, c);
         
         no = new JButton("No");
+        no.setFont(new Font("Futura Bold", Font.PLAIN, 20));
         c.gridwidth = 1;
         c.gridx = 1;
         c.gridy = 1;
