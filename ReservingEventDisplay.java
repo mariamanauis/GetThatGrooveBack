@@ -11,13 +11,18 @@ import java.awt.*;
  * @author HP
  */
 public class ReservingEventDisplay extends JFrame {
-    private JLabel background, budget, eventImg, name, location, entrance, availability, cost, question;
+    private JLabel backgroundLabel, budget, eventImg, name, location, entrance, availability, cost, question;
     private JButton yes, no;
     private JPanel southPanel, centerPanel;
     
     public ReservingEventDisplay(Event e){
         super("Get That Groove Back!");
         this.setLayout(new BorderLayout(10, 10));
+        
+        /*ImageIcon background = new ImageIcon(ReservingEventDisplay.class.getResource("bg.png"));
+        JLabel backgroundLabel = new JLabel("", background, JLabel.CENTER);
+        backgroundLabel.setBounds(0, 0, 900, 600);
+        this.getContentPane().add(backgroundLabel);*/
         this.budget = new JLabel("Budget: ");
         
         centerPanel = new JPanel();

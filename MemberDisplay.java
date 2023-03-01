@@ -16,6 +16,7 @@ public class MemberDisplay extends JPanel{
     
     public MemberDisplay(Member m){
         this.memberName = new JLabel(m.getName());
+        memberName.setFont(new Font("Futura Bold", Font.PLAIN, 24));
         this.memberName.setHorizontalTextPosition(JLabel.CENTER);
         this.memberName.setVerticalTextPosition(JLabel.BOTTOM);
         ImageIcon img = new ImageIcon(MemberDisplay.class.getResource(
