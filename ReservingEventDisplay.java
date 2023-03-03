@@ -20,7 +20,7 @@ public class ReservingEventDisplay extends JFrame {
         this.setLayout(new BorderLayout(10, 10));
         
         
-        this.budget = new JLabel("Budget: ");
+        this.budget = new JLabel("Budget: 700", SwingConstants.RIGHT);
         budget.setFont(new Font("Futura Bold", Font.PLAIN, 24));
         centerPanel = new JPanel();
         centerPanel.setLayout(new GridBagLayout());
@@ -30,7 +30,10 @@ public class ReservingEventDisplay extends JFrame {
         
         eventImg = new JLabel();
         ImageIcon event = new ImageIcon(ReservingEventDisplay.class.getResource(e.getImgFileName()));
-        this.eventImg.setIcon(event);
+        Image eventImage = event.getImage();
+        Image scaledEventImg = eventImage.getScaledInstance(400, 300, Image.SCALE_SMOOTH);
+        event = new ImageIcon(scaledEventImg);
+        eventImg.setIcon(event);
         con.gridwidth = 1;
         con.gridheight = 5;
         con.gridx = 0;
@@ -86,7 +89,7 @@ public class ReservingEventDisplay extends JFrame {
         
         question = new JLabel("Reserve this event?");
         question.setFont(new Font("Futura Bold", Font.PLAIN, 24));
-        c.gridwidth = 2;
+        c.gridwidth = 4;
         c.gridx = 0;
         c.gridy = 0;
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -96,14 +99,14 @@ public class ReservingEventDisplay extends JFrame {
         yes = new JButton("Yes");
         yes.setFont(new Font("Futura Bold", Font.PLAIN, 20));
         c.gridwidth = 1;
-        c.gridx = 0;
+        c.gridx = 1;
         c.gridy = 1;
         southPanel.add(yes, c);
         
         no = new JButton("No");
         no.setFont(new Font("Futura Bold", Font.PLAIN, 20));
         c.gridwidth = 1;
-        c.gridx = 1;
+        c.gridx = 2;
         c.gridy = 1;
         southPanel.add(no, c);
         

@@ -13,14 +13,17 @@ import java.awt.*;
 public class MemberDisplay extends JPanel{
     private JLabel memberName;
     
-    
+   
     public MemberDisplay(Member m){
         this.memberName = new JLabel(m.getName());
-        memberName.setFont(new Font("Futura Bold", Font.PLAIN, 24));
+        memberName.setFont(new Font("Futura Bold", Font.PLAIN, 20));
         this.memberName.setHorizontalTextPosition(JLabel.CENTER);
         this.memberName.setVerticalTextPosition(JLabel.BOTTOM);
         ImageIcon img = new ImageIcon(MemberDisplay.class.getResource(
             m.getImgFileName()));
+        Image memImg = img.getImage();
+        Image scaledMemImg = memImg.getScaledInstance(150, 200, Image.SCALE_SMOOTH);
+        img = new ImageIcon(scaledMemImg);
         memberName.setIcon(img);
         
         this.setLayout(new GridBagLayout());

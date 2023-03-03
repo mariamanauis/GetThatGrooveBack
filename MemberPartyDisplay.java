@@ -18,15 +18,13 @@ public class MemberPartyDisplay extends JFrame {
     
     public MemberPartyDisplay(Member[] party){
         super("Get That Groove Back!");
-        ImageIcon background = new ImageIcon(MemberPartyDisplay.class.getResource("bg.png"));
-        JLabel backgroundLabel = new JLabel("", background, JLabel.CENTER);
-        backgroundLabel.setBounds(0, 0, 800, 600);
-        this.getContentPane().add(backgroundLabel);
-        
+               
         footer = new JLabel("Choose Your Artists!");
-        footer.setFont(new Font("Futura Bold", Font.PLAIN, 30));
+        footer.setAlignmentX(Component.CENTER_ALIGNMENT);
+        footer.setFont(new Font("Futura Bold", Font.PLAIN, 24));
         remaining = new JLabel("[SLOTS LEFT: 3]");
-        remaining.setFont(new Font("Futura Bold", Font.PLAIN, 30));
+        remaining.setAlignmentX(Component.CENTER_ALIGNMENT);
+        remaining.setFont(new Font("Futura Bold", Font.PLAIN, 24));
         southPanel = new JPanel();
         main = new JPanel();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -35,7 +33,7 @@ public class MemberPartyDisplay extends JFrame {
         this.add(southPanel, BorderLayout.SOUTH);
         this.add(main, BorderLayout.CENTER);
 
-        southPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        southPanel.setLayout(new BoxLayout(southPanel, BoxLayout.Y_AXIS));
         southPanel.add(footer);
         southPanel.add(remaining);
 
