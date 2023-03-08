@@ -15,6 +15,7 @@ public class MemberDisplay extends JPanel{
     
    
     public MemberDisplay(Member m){
+        this.setBackground(new java.awt.Color(230, 244, 185));
         this.memberName = new JLabel(m.getName());
         memberName.setFont(new Font("Futura Bold", Font.PLAIN, 20));
         this.memberName.setHorizontalTextPosition(JLabel.CENTER);

@@ -6,6 +6,9 @@ package getthatgrooveback;
 
 import javax.swing.*;
 import java.awt.*;
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
+
 /**
  *
  * @author HP
@@ -18,11 +21,15 @@ public class ReservingEventDisplay extends JFrame {
     public ReservingEventDisplay(Event e){
         super("Get That Groove Back!");
         this.setLayout(new BorderLayout(10, 10));
+        this.getContentPane().setBackground(new java.awt.Color(207, 233, 241));
         
         
         this.budget = new JLabel("Budget: 700", SwingConstants.RIGHT);
         budget.setFont(new Font("Futura Bold", Font.PLAIN, 24));
+        budget.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+       
         centerPanel = new JPanel();
+        centerPanel.setBackground(new java.awt.Color(207, 233, 241));
         centerPanel.setLayout(new GridBagLayout());
         GridBagConstraints con = new GridBagConstraints();
         con.fill = GridBagConstraints.BOTH;
@@ -41,7 +48,7 @@ public class ReservingEventDisplay extends JFrame {
         centerPanel.add(eventImg, con);
         
         name = new JLabel(e.getName());
-        name.setFont(new Font("Futura Bold", Font.PLAIN, 36));
+        name.setFont(new Font("Futura Bold", Font.PLAIN, 40));
         con.gridwidth = 1;
         con.gridheight = 1;
         con.gridx = 1;
@@ -49,7 +56,7 @@ public class ReservingEventDisplay extends JFrame {
         centerPanel.add(name, con);
         
         location = new JLabel("Location: " + e.getLocation());
-        location.setFont(new Font("Futura Bold", Font.PLAIN, 24));
+        location.setFont(new Font("Futura Bold", Font.PLAIN, 30));
         con.gridwidth = 1;
         con.gridheight = 1;
         con.gridx = 1;
@@ -57,7 +64,7 @@ public class ReservingEventDisplay extends JFrame {
         centerPanel.add(location, con);
         
         entrance = new JLabel("Entrance Fee: " + String.valueOf(e.getEntranceFee())); 
-        entrance.setFont(new Font("Futura Bold", Font.PLAIN, 24));
+        entrance.setFont(new Font("Futura Bold", Font.PLAIN, 30));
         con.gridwidth = 1;
         con.gridheight = 1;
         con.gridx = 1;
@@ -65,7 +72,7 @@ public class ReservingEventDisplay extends JFrame {
         centerPanel.add(entrance, con);
         
         cost = new JLabel("Cost: " + String.valueOf(e.getCost()));
-        cost.setFont(new Font("Futura Bold", Font.PLAIN, 24));
+        cost.setFont(new Font("Futura Bold", Font.PLAIN, 30));
         con.gridwidth = 1;
         con.gridheight = 1;
         con.gridx = 1;
@@ -73,7 +80,7 @@ public class ReservingEventDisplay extends JFrame {
         centerPanel.add(cost, con);
         
         availability = new JLabel("Availability: " + String.valueOf(e.getAvailability()));
-        availability.setFont(new Font("Futura Bold", Font.PLAIN, 24));
+        availability.setFont(new Font("Futura Bold", Font.PLAIN, 30));
         con.gridwidth = 1;
         con.gridheight = 1;
         con.gridx = 1;
@@ -81,12 +88,12 @@ public class ReservingEventDisplay extends JFrame {
         centerPanel.add(availability, con);
         
         southPanel = new JPanel();
-        
+        southPanel.setBackground(new java.awt.Color(196, 222, 110));
     
         southPanel.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
-        
+        c.insets = new Insets(3,3,3,3);
         question = new JLabel("Reserve this event?");
         question.setFont(new Font("Futura Bold", Font.PLAIN, 24));
         c.gridwidth = 4;
@@ -106,7 +113,7 @@ public class ReservingEventDisplay extends JFrame {
         no = new JButton("No");
         no.setFont(new Font("Futura Bold", Font.PLAIN, 20));
         c.gridwidth = 1;
-        c.gridx = 2;
+        c.gridx = 3;
         c.gridy = 1;
         southPanel.add(no, c);
         
