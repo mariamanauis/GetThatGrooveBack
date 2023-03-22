@@ -1,0 +1,71 @@
+package getthatgrooveback;
+
+import javax.swing.*;
+import java.awt.*;
+import javax.swing.BorderFactory;
+/**
+ *
+ * @author HP
+ */
+public class MemberView extends JFrame {
+    private JButton back;
+    private JLabel memberImage, name, skill, popularity;
+    private JPanel centerPanel;
+    
+    public MemberView(Member m){
+        super("Get That Groove Back!");
+        this.setLayout(new BorderLayout(10, 10));
+        this.getContentPane().setBackground(new java.awt.Color(207, 233, 241));
+        this.setSize(900, 600);
+        
+        back = new JButton("< Back");
+        back.setFont(new Font("Futura Bold", Font.PLAIN, 24));
+        back.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        
+        centerPanel = new JPanel();
+        centerPanel.setBackground(new java.awt.Color(207, 233, 241));
+        centerPanel.setLayout(new GridBagLayout());
+        GridBagConstraints con = new GridBagConstraints();
+        con.fill = GridBagConstraints.BOTH;
+        
+        memberImage = new JLabel();
+        ImageIcon memberImg = new ImageIcon(getClass().getResource(m.getImgFileName()));
+        Image member = memberImg.getImage();
+        Image scaledMember = member.getScaledInstance(400, 225, Image.SCALE_SMOOTH);
+        memberImg = new ImageIcon(scaledMember);
+        memberImage.setIcon(memberImg);
+        con.gridwidth = 1;
+        con.gridheight = 3;
+        con.gridx = 0;
+        con.gridy = 0;
+        centerPanel.add(memberImage, con);
+        
+        name = new JLabel("Name: " + m.getName());
+        name.setFont(new Font("Futura Bold", Font.PLAIN, 40));
+        con.gridwidth = 1;
+        con.gridheight = 1;
+        con.gridx = 1;
+        con.gridy = 0;
+        centerPanel.add(name, con);
+        
+        skill = new JLabel("Skill: " + m.getSkill());
+        skill.setFont(new Font("Futura Bold", Font.PLAIN, 30));
+        con.gridwidth = 1;
+        con.gridheight = 1;
+        con.gridx = 1;
+        con.gridy = 1;
+        centerPanel.add(skill, con);
+        
+        popularity = new JLabel("Popularity Points: " + m.getPopularityPoints()); 
+        popularity.setFont(new Font("Futura Bold", Font.PLAIN, 30));
+        con.gridwidth = 1;
+        con.gridheight = 1;
+        con.gridx = 1;
+        con.gridy = 2;
+        centerPanel.add(popularity, con);
+        
+        this.add(back, BorderLayout.NORTH);
+        this.add(centerPanel, BorderLayout.CENTER);
+    }
+    
+}
