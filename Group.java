@@ -3,19 +3,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package getthatgrooveback;
-
 import java.util.ArrayList;
 /**
  *
  * @author HP
  */
 public class Group implements Advertisable, Interactable {
-    protected String name, fandomName;
+    protected String name, imgFilename, fandomName;
     protected ArrayList<Member> memberList = new ArrayList<>();
-    protected int popularityPoints, noOfFans;
+    protected int popularityPoints, noOfFans, cost;
     
-    public Group(String n, String f){
+    public Group(String n, String i, String f){
         name = n;
+        imgFilename = i;
         //addition of members will be done by Manager
         fandomName = f;
         popularityPoints = 0;
@@ -23,8 +23,20 @@ public class Group implements Advertisable, Interactable {
     
     }
     
+    //constructor for the groups in the collab screen
+    public Group(String n, String img, int p, int c){
+        name = n;
+        imgFilename = img;
+        popularityPoints = p;
+        cost = c;
+    }
+    
     public String getName(){
         return name;
+    }
+    
+    public String getImgFileName(){
+        return imgFilename;
     }
     
     public String getFandomName(){
@@ -39,11 +51,19 @@ public class Group implements Advertisable, Interactable {
         return noOfFans;
     }
     
+    public int getCost(){
+        return cost;
+    }
+    
     public void checkMembers(){
         System.out.println("Members: ");
         for(Member i: memberList){
-            System.out.print(i + ", ");
+            System.out.print(i.getName() + ", ");
         }
+    }
+    
+    public void addMember(Member m){
+        memberList.add(m);
     }
     
     public void practice(int hours){
