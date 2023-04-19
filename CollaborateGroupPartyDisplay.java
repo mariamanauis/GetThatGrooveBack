@@ -1,4 +1,4 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -21,6 +21,7 @@ public class CollaborateGroupPartyDisplay extends JFrame {
     private static int maxRows = 2;
     private ArrayList<String> groupList = new ArrayList();
     private int index = 0;
+    private CollaborateGroupController controller;
     
     public CollaborateGroupPartyDisplay(Group[] party){
         super("Get That Groove Back!");
@@ -54,7 +55,7 @@ public class CollaborateGroupPartyDisplay extends JFrame {
             groupList.add(g.getName());
         }
         
-        //controller = new CollaborateGroupController(this, groupList);
+        controller = new CollaborateGroupController(this);
         
     }
 }

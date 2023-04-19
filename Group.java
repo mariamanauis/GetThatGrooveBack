@@ -4,6 +4,7 @@
  */
 package getthatgrooveback;
 import java.util.ArrayList;
+import java.util.Arrays;
 /**
  *
  * @author HP
@@ -11,11 +12,24 @@ import java.util.ArrayList;
 public class Group implements Advertisable, Interactable {
     protected String name, imgFilename, fandomName;
     protected ArrayList<Member> memberList = new ArrayList<>();
+    protected ArrayList<Member> memberChoices = new ArrayList<>(Arrays.asList(
+        new Member("Jark Pihyo", "jark_pihyo.png", "dancing", 0, 0),
+        new Member("Jee Lihoon", "jee_lihoon.png", "singing", 0, 0), 
+        new Member("Ahn Jinhye", "ahn_jinhye.png", "rapping", 0, 0), 
+        new Member("Yin Moongi", "yin_moongi.png", "rapping", 0, 0), 
+        new Member("Hang Kaerin", "hang_kaerin.png", "rapping", 0, 0), 
+        new Member("Jan Hisung", "jan_hisung.png", "singing", 0, 0), 
+        new Member("Mee Linho", "placeholder.png", "dancing", 0, 0), 
+        new Member("Joon Yeonghan", "placeholder.png", "singing", 0, 0), 
+        new Member("Rin Shyujin", "placeholder.png", "dancing", 0, 0), 
+        new Member("Jim Kisoo", "placeholder.png", "singing", 0, 0)));
+    protected Member[] displayedMembers = new Member[10];
     protected int popularityPoints, noOfFans, cost;
+    protected static ArrayList<Group> collabList = new ArrayList();
+    protected boolean isSelected;
     
-    public Group(String n, String i, String f){
+    public Group(String n, String f){
         name = n;
-        imgFilename = i;
         //addition of members will be done by Manager
         fandomName = f;
         popularityPoints = 0;
@@ -29,6 +43,23 @@ public class Group implements Advertisable, Interactable {
         imgFilename = img;
         popularityPoints = p;
         cost = c;
+        collabList.add(this);
+        isSelected = false;
+    }
+    
+    public static Group searchGroup(String search) throws NullPointerException {
+        for(Group g : collabList){
+            if(g.getName().equalsIgnoreCase(search)) return g;
+        }
+        throw new NullPointerException();
+    }
+    
+    public boolean getIsSelected(){
+        return isSelected;
+    }
+    
+    public void setIsSelected(boolean b){
+        isSelected = b;
     }
     
     public String getName(){
@@ -53,6 +84,20 @@ public class Group implements Advertisable, Interactable {
     
     public int getCost(){
         return cost;
+    }
+    
+    public void generateMemberChoices(int a){
+        int range = 8;
+        
+        for(int i = 0; i < a; i++){
+            int random = (int) Math.floor(Math.random()*range) + 2;
+            displayedMembers[i] = memberChoices.get(random);
+            memberChoices.remove(random);
+        }
+    }
+    
+    public Member[] getDisplayedMembers(){
+        return displayedMembers;
     }
     
     public void checkMembers(){

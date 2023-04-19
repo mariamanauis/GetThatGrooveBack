@@ -16,7 +16,7 @@ public class CollaborateGroupDisplay extends JPanel {
     private JLabel groupName;
     private JButton viewGroup;
     private JPanel button;
-    
+    private CollaborateGroupController controller;
     public CollaborateGroupDisplay(Group g, int index){
         this.setBackground(new java.awt.Color(255,222,166));
         this.groupName = new JLabel(g.getName());
@@ -56,9 +56,9 @@ public class CollaborateGroupDisplay extends JPanel {
         this.add(button);
         viewGroup.setVisible(false);
         
-        //controllers here
-        //groupName.addMouseListener(controller);
-        //viewGroup.addActionListener(controller);
+        controller = new CollaborateGroupController(this, groupName, viewGroup);
+        groupName.addMouseListener(controller);
+        viewGroup.addActionListener(controller);
     
     }
 }

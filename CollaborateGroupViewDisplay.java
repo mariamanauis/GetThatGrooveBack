@@ -7,6 +7,7 @@ package getthatgrooveback;
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.BorderFactory;
+
 /**
  *
  * @author HP
@@ -18,6 +19,7 @@ public class CollaborateGroupViewDisplay extends JFrame {
     
     public CollaborateGroupViewDisplay(Group g){
         super("Get That Groove Back!");
+        this.setSize(900, 600);
         this.setLayout(new BorderLayout(10, 10));
         this.getContentPane().setBackground(new java.awt.Color(255,222,166));
         
@@ -101,5 +103,4 @@ public class CollaborateGroupViewDisplay extends JFrame {
         this.add(main, BorderLayout.CENTER);
         this.add(southPanel, BorderLayout.SOUTH);
     }
-    
 }
