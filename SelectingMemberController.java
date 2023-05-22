@@ -40,7 +40,7 @@ public class SelectingMemberController implements MouseListener, ActionListener{
         JFrame window = new MemberViewDisplay(m);
         window.setVisible(true);
     }
-    
+
     @Override
     public void mouseClicked(MouseEvent e) {
         //changes formatting of clicked jlabel
@@ -92,10 +92,27 @@ public class SelectingMemberController implements MouseListener, ActionListener{
                 
                 JOptionPane.showMessageDialog(frame, "Member added to your group!");
                 
+                memCount--;
+                select.setEnabled(false);
+                remaining.setText("[SLOTS LEFT: " + memCount + "]");
+            }
+            
+            if(memCount == 1){
+                String holder = Group.getOwnName();
+                Group group = Group.searchOwnGroup(holder);
+                
+                group.addMember(m);
+                
+                JOptionPane.showMessageDialog(frame, "Member added to your group!");
+                
                 select.setEnabled(false);
                 
                 memCount--;
                 remaining.setText("[SLOTS LEFT: " + memCount + "]");
+                
+                JFrame window = new MainMenuDisplay();
+                window.setVisible(true);
+                frame.dispose();
             }
         }    
     }
