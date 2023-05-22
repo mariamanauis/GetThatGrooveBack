@@ -7,10 +7,7 @@ package getthatgrooveback;
 import java.awt.event.*;
 import java.awt.*;
 import java.io.*;
-import java.util.ArrayList;
 import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -18,31 +15,30 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class SelectingMemberController implements MouseListener, ActionListener{
     private JFrame frame;
-    private SelectingMemberDisplay memBox;
+    private SelectingMemberPartyDisplay frameBox;
     private JLabel memLabel;
     private JButton view, select;
     private JLabel source, remaining;
     private Group group;
     private int memCount;
     
-    public SelectingMemberController(JFrame f, String n, int c, JLabel r){
+    public SelectingMemberController(JFrame f, String n){
         this.frame = f;
-        memCount = c;
-        remaining = r;
     }
     
-    public SelectingMemberController(SelectingMemberDisplay m, JLabel l, JButton v, JButton s){
-        memBox = m;
+    public SelectingMemberController(JLabel l, JButton v, JButton s, JLabel r, SelectingMemberPartyDisplay f, int c){
         memLabel = l;
         view = v;
         select = s;
+        remaining = r;
+        frameBox = f;
+        memCount = c;
     }
     
     public void openDetails(Member m){
         // opens display window
         JFrame window = new MemberViewDisplay(m);
         window.setVisible(true);
-        frame.dispose();
     }
     
     @Override
@@ -54,14 +50,11 @@ public class SelectingMemberController implements MouseListener, ActionListener{
         
         if(!isSelected){
             source.setFont(new Font("Futura Bold", Font.BOLD, 20));
-            LineBorder line = new LineBorder(Color.black, 2, true);
-            memBox.setBorder(line);
             view.setVisible(true);
             select.setVisible(true);
             holder.setIsSelected(true);
         } else {
             source.setFont(new Font("Futura Bold", Font.PLAIN, 20));
-            memBox.setBorder(javax.swing.BorderFactory.createEmptyBorder());
             view.setVisible(false);
             select.setVisible(false);
             holder.setIsSelected(false);
@@ -75,14 +68,10 @@ public class SelectingMemberController implements MouseListener, ActionListener{
     public void mouseReleased(MouseEvent e) {}
 
     @Override
-    public void mouseEntered(MouseEvent e) {
-        memBox.setBackground(new java.awt.Color(207, 233, 241));
-    }
+    public void mouseEntered(MouseEvent e) {}
 
     @Override
-    public void mouseExited(MouseEvent e) {
-        memBox.setBackground(new java.awt.Color(230, 244, 185));
-    }
+    public void mouseExited(MouseEvent e) {}
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -96,41 +85,17 @@ public class SelectingMemberController implements MouseListener, ActionListener{
             int input = JOptionPane.showConfirmDialog(null, 
             "Do you want to add this member to your group?", "Confirm selection",JOptionPane.YES_NO_OPTION);
             if(input == 0){
-                try{
-                    JFileChooser fileChooser = new JFileChooser();
-                    FileNameExtensionFilter filter = new FileNameExtensionFilter("csv files", "csv");
-                    fileChooser.setFileFilter(filter);
-                    fileChooser.showOpenDialog(frame);
-                    File selectedFile = fileChooser.getSelectedFile();
-
-                    if(selectedFile != null){
-                        System.out.println(selectedFile);
-                        FileWriter writer = new FileWriter(selectedFile, true);
-                        writer.append(m.getName());
-                        writer.append(",");
-                        writer.append(m.getImgFileName());
-                        writer.append(",");
-                        writer.append(m.getSkill());
-                        writer.append(",");
-                        writer.append(Integer.toString(m.getPopularityPoints()));
-                        writer.append(",");
-                        writer.append(Integer.toString(m.getRelationshipPoints()));
-                        writer.append("\n");
-                        writer.flush();
-                        writer.close();
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(frame, "No file selected.", "No file selected", JOptionPane.ERROR_MESSAGE);
-                    }
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                String holder = Group.getOwnName();
+                Group group = Group.searchOwnGroup(holder);
+                
+                group.addMember(m);
                 
                 JOptionPane.showMessageDialog(frame, "Member added to your group!");
                 
-                /* commented out muna bc it results in an error :(
+                select.setEnabled(false);
+                
                 memCount--;
-                remaining.setText("[SLOTS LEFT: " + memCount + "]");*/
+                remaining.setText("[SLOTS LEFT: " + memCount + "]");
             }
         }    
     }
