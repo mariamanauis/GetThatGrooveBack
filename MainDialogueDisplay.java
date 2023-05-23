@@ -32,11 +32,13 @@ public class MainDialogueDisplay extends JFrame {
         centerPanel.add(image);
         
         southPanel = new JPanel();
-        southPanel.setLayout(new BoxLayout(southPanel, BoxLayout.X_AXIS));
+        southPanel.setLayout(new BoxLayout(southPanel, BoxLayout.Y_AXIS));
         southPanel.setBackground(new java.awt.Color(164, 255, 222));
         next = new JButton("Next");
+        next.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         dialogue = new JLabel("Welcome to JMP Entertainment!");
+        dialogue.setAlignmentX(Component.CENTER_ALIGNMENT);
         dialogue.setSize(500, 500);
         
         southPanel.add(dialogue);
