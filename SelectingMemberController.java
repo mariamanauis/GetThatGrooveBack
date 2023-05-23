@@ -40,6 +40,7 @@ public class SelectingMemberController implements MouseListener, ActionListener{
         JFrame window = new MemberViewDisplay(m);
         window.setVisible(true);
     }
+    
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -81,39 +82,24 @@ public class SelectingMemberController implements MouseListener, ActionListener{
         }
         if(e.getSource() == select){
             Member m = Member.searchMember(source.getText());
-            // displays confirm dialog for user
-            int input = JOptionPane.showConfirmDialog(null, 
-            "Do you want to add this member to your group?", "Confirm selection",JOptionPane.YES_NO_OPTION);
-            if(input == 0){
-                String holder = Group.getOwnName();
-                Group group = Group.searchOwnGroup(holder);
-                
-                group.addMember(m);
-                
-                JOptionPane.showMessageDialog(frame, "Member added to your group!");
-                
-                memCount--;
-                select.setEnabled(false);
-                remaining.setText("[SLOTS LEFT: " + memCount + "]");
+            memCount -= 1;
+                if(memCount > 0){
+                    String holder = Group.getOwnName();
+                    Group group = Group.searchOwnGroup(holder);
+
+                    group.addMember(m);
+
+                    JOptionPane.showMessageDialog(frame, "Member added to your group!");
+
+                    select.setEnabled(false);
+                    remaining.setText("[SLOTS LEFT: " + memCount + "]");
+                }
+                if(memCount == 0){
+                        JFrame window = new MainMenuDisplay();
+                        window.setVisible(true);
+                        frame.dispose();
+                }
             }
             
-            if(memCount == 1){
-                String holder = Group.getOwnName();
-                Group group = Group.searchOwnGroup(holder);
-                
-                group.addMember(m);
-                
-                JOptionPane.showMessageDialog(frame, "Member added to your group!");
-                
-                select.setEnabled(false);
-                
-                memCount--;
-                remaining.setText("[SLOTS LEFT: " + memCount + "]");
-                
-                JFrame window = new MainMenuDisplay();
-                window.setVisible(true);
-                frame.dispose();
-            }
-        }    
     }
 }
