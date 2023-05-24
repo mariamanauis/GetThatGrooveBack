@@ -20,7 +20,7 @@ public class SelectingMemberController implements MouseListener, ActionListener{
     private JButton view, select;
     private JLabel source, remaining;
     private Group group;
-    private int memCount;
+    private static int memCount;
     
     public SelectingMemberController(JFrame f, String n){
         this.frame = f;
@@ -82,7 +82,6 @@ public class SelectingMemberController implements MouseListener, ActionListener{
         }
         if(e.getSource() == select){
             Member m = Member.searchMember(source.getText());
-            memCount -= 1;
                 if(memCount > 0){
                     String holder = Group.getOwnName();
                     Group group = Group.searchOwnGroup(holder);
@@ -90,14 +89,15 @@ public class SelectingMemberController implements MouseListener, ActionListener{
                     group.addMember(m);
 
                     JOptionPane.showMessageDialog(frame, "Member added to your group!");
-
+                    
+                    memCount -= 1;
                     select.setEnabled(false);
                     remaining.setText("[SLOTS LEFT: " + memCount + "]");
                 }
                 if(memCount == 0){
                         JFrame window = new MainMenuDisplay();
                         window.setVisible(true);
-                        frame.dispose();
+                        frameBox.dispose();
                 }
             }
             
