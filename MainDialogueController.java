@@ -44,9 +44,13 @@ public class MainDialogueController implements ActionListener, MouseListener{
                 int memCount = Integer.parseInt(JOptionPane.showInputDialog(frame, "Enter The Amount Of Members In Your Group (choose"
                         + " integer values from 2 to 6)", "4"));
                 
+                while(memCount < 2 || memCount > 6){
+                    memCount = Integer.parseInt(JOptionPane.showInputDialog(frame, "Please choose a number from 2 to 6", "4"));
+                }
+                
                 grpInput.generateMemberChoices(memCount);
                 displayedMembers = grpInput.getDisplayedMembers();
-                
+
                 JFrame window = new SelectingMemberPartyDisplay(grpName, memCount, displayedMembers);
                 window.setVisible(true);
                 frame.dispose();
