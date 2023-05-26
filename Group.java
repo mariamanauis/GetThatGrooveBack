@@ -13,7 +13,7 @@ import java.util.Arrays;
  * @version 1.0
  * @since 05/09/2023
  */
-public class Group implements Advertisable, Interactable {
+public class Group{
     /**Represents the name 
      * of the group
      */
@@ -131,7 +131,7 @@ public class Group implements Advertisable, Interactable {
     * to the user's input
     * @param search - String user input
     * @throws NullPointerException if search 
-    * does not match any event name
+    * does not match any group name
     */
     public static Group searchGroup(String search) throws NullPointerException {
         for(Group g : collabList){
@@ -140,6 +140,14 @@ public class Group implements Advertisable, Interactable {
         throw new NullPointerException();
     }
     
+    /** Returns the user's created Group
+     * @return Group with name corresponding 
+     * to the user's input (user's own Group)
+     * @param search - String user input
+     * (user's own Group's name)
+     * @throws NullPointerException if search 
+     * does not match any group name
+     */
     public static Group searchOwnGroup(String search) throws NullPointerException {
         for(Group g : ownGroup){
             if(g.getOwnName().equalsIgnoreCase(search)) return g;
@@ -186,12 +194,20 @@ public class Group implements Advertisable, Interactable {
         return ownPopularityPoints;
     }
     
+    public static void addOwnPopularityPoints(int i){
+        ownPopularityPoints += i;
+    }
+    
     /** Gets the group’s own fandom name.
     * @return an int representing the
     * amount of fans the group has
     */
     public static int getOwnNoOfFans(){
         return ownNoOfFans;
+    }
+    
+    public static void addOwnNoOfFans(int i){
+        ownNoOfFans += i;
     }
     
     /** Gets the group’s name.
@@ -282,25 +298,5 @@ public class Group implements Advertisable, Interactable {
         memberList.add(m);
     }
     
-    //hindi naman ginagamit so....
-    /*public void practice(int hours){
-        System.out.println(name + "has practiced for " + hours + " hours.");
-    }
     
-    public void collab(Group i){
-        System.out.println(name + "collaborated with " + i.getName() + " .");
-        popularityPoints += 10;
-    }    
-    public void perform(){
-        popularityPoints += 50;
-
-    }*/
-    
-    public void promote(){
-        //to be discussed
-    }
-    
-    public void interact(){
-        //to be discussed
-    }
 }
