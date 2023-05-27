@@ -21,6 +21,7 @@ public class MainMenuController implements ActionListener {
     private JButton collaborate, groupView, booking, practice;
     private Manager player;
     private Event[] eventParty;
+    private Group[] collabParty;
 
     public MainMenuController(JFrame f, JButton c, JButton g, JButton b, JButton p, Manager m){
         this.frame = f;
@@ -34,12 +35,29 @@ public class MainMenuController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e)  {
         if(e.getSource() == collaborate){
-            //JFrame window = new CollaborateGroupPartyDisplay();
-            //window.setVisible(true);
+            Group[] collabParty = new Group[6];
+            try{
+                int counter = 0;
+                InputStream is = MainMenuController.class.getClassLoader().getResourceAsStream("getthatgrooveback/collab_groups.csv");
+                InputStreamReader isr = new InputStreamReader(is);
+                BufferedReader reader = new BufferedReader(isr);
+
+                String line;
+
+                while ((line = reader.readLine()) != null && counter < 6) {
+                    String[] details = line.split(",");
+                    collabParty[counter] = new Group(details[0], details[1], Integer.parseInt(details[2]), Double.parseDouble(details[3]));
+                    counter++;
+            }
+
+            reader.close();
+            }catch(IOException t){}
+            JFrame window = new CollaborateGroupPartyDisplay(collabParty, player);
+            window.setVisible(true);
             frame.dispose();
         }
         if(e.getSource() == groupView){
-            JFrame window = new GroupProfileDisplay();
+            JFrame window = new GroupProfileDisplay(player);
             window.setVisible(true);
             frame.dispose();
         }

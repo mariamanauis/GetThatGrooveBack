@@ -14,17 +14,21 @@ import javax.swing.BorderFactory;
  */
 public class CollaborateGroupViewDisplay extends JFrame {
     private JLabel budget, groupImg, name, popularity, cost, question;
-    private JButton yes, no;
+    private JButton close;
     private JPanel southPanel, main;
+    private CollaborateGroupViewController controller;
+    private Manager player;
     
-    public CollaborateGroupViewDisplay(Group g){
+    public CollaborateGroupViewDisplay(Group g, Manager m){
         super("Get That Groove Back!");
-        this.setSize(900, 600);
+        this.setSize(450, 300);
         this.setLayout(new BorderLayout(10, 10));
         this.getContentPane().setBackground(new java.awt.Color(255,222,166));
         
-        this.budget = new JLabel("Budget: 700", SwingConstants.RIGHT);
-        budget.setFont(new Font("Futura Bold", Font.PLAIN, 24));
+        player = m;
+        
+        this.budget = new JLabel("Budget: " + player.getBudget(), SwingConstants.RIGHT);
+        budget.setFont(new Font("Futura Bold", Font.PLAIN, 16));
         budget.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         
         main = new JPanel();
@@ -36,7 +40,7 @@ public class CollaborateGroupViewDisplay extends JFrame {
         groupImg = new JLabel();
         ImageIcon group = new ImageIcon(CollaborateGroupViewDisplay.class.getResource("imgs/" + g.getImgFileName()));
         Image groupImage = group.getImage();
-        Image scaledGroupImg = groupImage.getScaledInstance(400, 300, Image.SCALE_SMOOTH);
+        Image scaledGroupImg = groupImage.getScaledInstance(200, 150, Image.SCALE_SMOOTH);
         group = new ImageIcon(scaledGroupImg);
         groupImg.setIcon(group);
         con.gridwidth = 1;
@@ -46,7 +50,7 @@ public class CollaborateGroupViewDisplay extends JFrame {
         main.add(groupImg, con);
         
         name = new JLabel(g.getName());
-        name.setFont(new Font("Futura Bold", Font.PLAIN, 40));
+        name.setFont(new Font("Futura Bold", Font.PLAIN, 16));
         con.gridwidth = 1;
         con.gridheight = 1;
         con.gridx = 1;
@@ -54,7 +58,7 @@ public class CollaborateGroupViewDisplay extends JFrame {
         main.add(name, con);
         
         popularity = new JLabel("Popularity: " + String.valueOf(g.getPopularityPoints()));
-        popularity.setFont(new Font("Futura Bold", Font.PLAIN, 30));
+        popularity.setFont(new Font("Futura Bold", Font.PLAIN, 12));
         con.gridwidth = 1;
         con.gridheight = 1;
         con.gridx = 1;
@@ -62,7 +66,7 @@ public class CollaborateGroupViewDisplay extends JFrame {
         main.add(popularity, con);
         
         cost = new JLabel("Cost: " + String.valueOf(g.getCost()));
-        cost.setFont(new Font("Futura Bold", Font.PLAIN, 30));
+        cost.setFont(new Font("Futura Bold", Font.PLAIN, 12));
         con.gridwidth = 1;
         con.gridheight = 1;
         con.gridx = 1;
@@ -72,35 +76,21 @@ public class CollaborateGroupViewDisplay extends JFrame {
         
         southPanel = new JPanel();
         southPanel.setBackground(new java.awt.Color(248,196,172));
-        
-        southPanel.setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.insets = new Insets(3,3,3,3);
-        question = new JLabel("Collaborate with this group?");
-        question.setFont(new Font("Futura Bold", Font.PLAIN, 24));
-        c.gridwidth = 4;
-        c.gridx = 0;
-        c.gridy = 0;
-        c.fill = GridBagConstraints.HORIZONTAL;
-        southPanel.add(question, c);
-        
-        yes = new JButton("Yes");
-        yes.setFont(new Font("Futura Bold", Font.PLAIN, 20));
-        c.gridwidth = 1;
-        c.gridx = 1;
-        c.gridy = 1;
-        southPanel.add(yes, c);
-        
-        no = new JButton("No");
-        no.setFont(new Font("Futura Bold", Font.PLAIN, 20));
-        c.gridwidth = 1;
-        c.gridx = 3;
-        c.gridy = 1;
-        southPanel.add(no, c);
+    
+        close = new JButton("Close");
+        close.setFont(new Font("Futura Bold", Font.PLAIN, 12));
+        southPanel.add(close);
+        close.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         this.add(budget, BorderLayout.NORTH);
         this.add(main, BorderLayout.CENTER);
         this.add(southPanel, BorderLayout.SOUTH);
+        
+        controller = new CollaborateGroupViewController(this, groupImg, name, popularity, cost, close, player);
+        groupImg.addMouseListener(controller);
+        name.addMouseListener(controller);
+        popularity.addMouseListener(controller);
+        cost.addMouseListener(controller);
+        close.addActionListener(controller);
     }
 }

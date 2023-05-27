@@ -18,21 +18,23 @@ public class GroupProfileController implements ActionListener, MouseListener{
     private JLabel memberImage, memberName, memberSkill, memberPopularity;
     private JLabel groupName, popularityPoints, fandomName, fandomCount;
     private JButton back;
+    private Manager player;
     
-    public GroupProfileController(JFrame m, JLabel img, JLabel n, JLabel s, JLabel p, JButton b){
+    public GroupProfileController(JFrame m, JLabel img, JLabel n, JLabel s, JLabel p, JButton b, Manager pl){
         frame = m;
         memberImage = img;
         memberName = n;
         memberSkill = s;
         memberPopularity = p;
         back = b;
+        player = pl;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == back){
         frame.dispose();
-        JFrame display = new MainMenuDisplay();
+        JFrame display = new MainMenuDisplay(player);
         display.setVisible(true);
         }
     }

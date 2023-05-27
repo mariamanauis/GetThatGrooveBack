@@ -20,13 +20,17 @@ public class SelectingMemberPartyDisplay extends JFrame {
     private static int maxRows = 2;
     private int memCount;
     private SelectingMemberController controller;
+    private Manager player;
     
     private JLabel memberName;
     private JButton view, select;
     private JPanel button;
     
-    public SelectingMemberPartyDisplay(String grpName, int c, Member[] party){
+    public SelectingMemberPartyDisplay(String grpName, int c, Member[] party, Manager p){
         super("Get That Groove Back!");
+        
+        player = p;
+        
         this.getContentPane().setBackground(new java.awt.Color(230, 244, 185));       
         footer = new JLabel("Choose Your Artists!");
         footer.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -58,11 +62,11 @@ public class SelectingMemberPartyDisplay extends JFrame {
         memCount = c;
 
         for(Member m : party){
-            SelectingMemberDisplay display = new SelectingMemberDisplay(m);
+            SelectingMemberDisplay display = new SelectingMemberDisplay(m, player);
             main.add(display);
         }
         
-        controller = new SelectingMemberController(this, grpName);
+        controller = new SelectingMemberController(this, grpName, player);
     }
     public class SelectingMemberDisplay extends JPanel{
     private JLabel memberName, remainingText;
@@ -71,8 +75,10 @@ public class SelectingMemberPartyDisplay extends JFrame {
     private JPanel button;
     private SelectingMemberPartyDisplay frame;
     private int memCounter;
+    private Manager player;
    
-    public SelectingMemberDisplay(Member m){
+    public SelectingMemberDisplay(Member m, Manager p){
+        player = p;
         frame = SelectingMemberPartyDisplay.this;
         remainingText = SelectingMemberPartyDisplay.this.remaining;
         memCounter = SelectingMemberPartyDisplay.this.memCount;
@@ -122,7 +128,7 @@ public class SelectingMemberPartyDisplay extends JFrame {
         view.setVisible(false);
         select.setVisible(false);
         
-        controller = new SelectingMemberController(memberName, view, select, remainingText, frame, memCounter);
+        controller = new SelectingMemberController(memberName, view, select, remainingText, frame, memCounter, player);
         memberName.addMouseListener(controller);
         view.addActionListener(controller);
         select.addActionListener(controller);

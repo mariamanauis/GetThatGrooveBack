@@ -21,18 +21,21 @@ public class SelectingMemberController implements MouseListener, ActionListener{
     private JLabel source, remaining;
     private Group group;
     private static int memCount;
+    private Manager player;
     
-    public SelectingMemberController(JFrame f, String n){
+    public SelectingMemberController(JFrame f, String n, Manager p){
         this.frame = f;
+        player = p;
     }
     
-    public SelectingMemberController(JLabel l, JButton v, JButton s, JLabel r, SelectingMemberPartyDisplay f, int c){
+    public SelectingMemberController(JLabel l, JButton v, JButton s, JLabel r, SelectingMemberPartyDisplay f, int c, Manager m){
         memLabel = l;
         view = v;
         select = s;
         remaining = r;
         frameBox = f;
         memCount = c;
+        player = m;
     }
     
     public void openDetails(Member m){
@@ -87,15 +90,15 @@ public class SelectingMemberController implements MouseListener, ActionListener{
                     Group group = Group.searchOwnGroup(holder);
 
                     group.addMember(m);
+                    memCount -= 1;
 
                     JOptionPane.showMessageDialog(frame, "Member added to your group!");
-                    
-                    memCount -= 1;
+
                     select.setEnabled(false);
                     remaining.setText("[SLOTS LEFT: " + memCount + "]");
                 }
                 if(memCount == 0){
-                        JFrame window = new MainMenuDisplay();
+                        JFrame window = new MainMenuDisplay(player);
                         window.setVisible(true);
                         frameBox.dispose();
                 }

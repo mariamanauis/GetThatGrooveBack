@@ -4,29 +4,30 @@
  */
 package getthatgrooveback;
 
-/**
- *
- * @author HP
- */
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+/**
+ *
+ * @author Jillian
+ */
 
 public class CollaborateGroupViewController implements MouseListener, ActionListener {
-    private CollaborateGroupViewDisplay frame;
+    private JFrame frame;
     private JLabel groupImage, groupName, groupPopularity, groupCost;
-    private JButton yes, no;
+    private JButton close;
+    private Manager player;
     
-    public CollaborateGroupViewController(CollaborateGroupViewDisplay f, JLabel img, JLabel n, JLabel p, JLabel c, JButton y, JButton n0){
+    public CollaborateGroupViewController(JFrame f, JLabel img, JLabel n, JLabel p, JLabel c, JButton cl, Manager m){
         frame = f;
         groupImage = img;
         groupName = n;
         groupPopularity = p;
         groupCost = c;
-        yes = y;
-        no = n0;
+        close = cl;
+        player = m;
     }
 
     @Override
@@ -35,23 +36,23 @@ public class CollaborateGroupViewController implements MouseListener, ActionList
          Font f = source.getFont();
         if(f.isPlain()){
             if(e.getSource() == groupName){
-                groupName.setFont(new Font("Futura Bold", Font.BOLD, 40));
+                groupName.setFont(new Font("Futura Bold", Font.BOLD, 16));
             }
             if(e.getSource() == groupPopularity){
-                groupPopularity.setFont(new Font("Futura Bold", Font.BOLD, 30));
+                groupPopularity.setFont(new Font("Futura Bold", Font.BOLD, 12));
             }
             if(e.getSource() == groupCost){
-                groupCost.setFont(new Font("Futura Bold", Font.BOLD, 30));
+                groupCost.setFont(new Font("Futura Bold", Font.BOLD, 12));
             }
         } else {
             if(e.getSource() == groupName){
-                groupName.setFont(new Font("Futura Bold", Font.PLAIN, 40));
+                groupName.setFont(new Font("Futura Bold", Font.PLAIN, 12));
             }
             if(e.getSource() == groupPopularity){
-                groupPopularity.setFont(new Font("Futura Bold", Font.PLAIN, 30));
+                groupPopularity.setFont(new Font("Futura Bold", Font.PLAIN, 12));
             }
             if(e.getSource() == groupCost){
-                groupCost.setFont(new Font("Futura Bold", Font.PLAIN, 30));
+                groupCost.setFont(new Font("Futura Bold", Font.PLAIN, 12));
             }
         }
     }
@@ -80,18 +81,9 @@ public class CollaborateGroupViewController implements MouseListener, ActionList
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == yes){
-            //deduct cost from budget
-            //generate random increase in popularity based on range of popularity of the two groups
-            //display dialog box with new popularity points and resulting budget
-            
-        }
-        if(e.getSource() == no){
-            //JFrame window = new CollaborateGroupViewDisplay(g);
-            //window.setVisible(true);
-            frame.dispose();
+        if(e.getSource() == close){
+          frame.dispose();
         }
     }
     
 }
-

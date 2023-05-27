@@ -15,10 +15,13 @@ public class MainDialogueDisplay extends JFrame {
     private JLabel image, dialogue;
     private JPanel southPanel, centerPanel;
     private MainDialogueController controller;
+    private Manager player;
     
-    public MainDialogueDisplay(){
+    public MainDialogueDisplay(Manager m){
         super("Get That Groove Back!");
         this.getContentPane().setBackground(new java.awt.Color(230, 244, 185));
+        
+        player = m;
         
         centerPanel = new JPanel();
         centerPanel.setBackground(new java.awt.Color(230, 244, 185));
@@ -35,11 +38,13 @@ public class MainDialogueDisplay extends JFrame {
         southPanel.setLayout(new BoxLayout(southPanel, BoxLayout.Y_AXIS));
         southPanel.setBackground(new java.awt.Color(164, 255, 222));
         next = new JButton("Next");
+        next.setFont(new Font("Futura Bold", Font.PLAIN, 16));
         next.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         dialogue = new JLabel("Welcome to JMP Entertainment!");
+        dialogue.setFont(new Font("Futura Bold", Font.PLAIN, 16));
         dialogue.setAlignmentX(Component.CENTER_ALIGNMENT);
-        dialogue.setSize(500, 500);
+        dialogue.setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
         
         southPanel.add(dialogue);
         southPanel.add(next);
@@ -50,7 +55,7 @@ public class MainDialogueDisplay extends JFrame {
         this.setSize(900, 600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        controller = new MainDialogueController(this, next, dialogue);
+        controller = new MainDialogueController(this, next, dialogue, player);
         next.addActionListener(controller);
     }
 }

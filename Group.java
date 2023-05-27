@@ -38,6 +38,8 @@ public class Group{
      * in the group
      */
     protected static ArrayList<Member> memberList = new ArrayList<>();
+    
+    protected static boolean concert;
 
     protected ArrayList<Member> memberChoices = new ArrayList<>(Arrays.asList(
         new Member("Jark Pihyo", "jark_pihyo.png", "dancing", 0, 0),
@@ -103,6 +105,7 @@ public class Group{
         ownFandomName = f;
         ownPopularityPoints = p;
         ownNoOfFans = h;
+        concert = false;
         ownGroup.add(this);
     }
     
@@ -208,6 +211,14 @@ public class Group{
     
     public static void addOwnNoOfFans(int i){
         ownNoOfFans += i;
+    }
+    
+    public static boolean getConcertStatus(){
+        return concert;
+    }
+    
+    public static void setConcertStatus(boolean b){
+        concert = b;
     }
     
     /** Gets the group’s name.

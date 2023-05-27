@@ -3,74 +3,71 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package getthatgrooveback;
-
 import java.util.ArrayList;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+
 /**
- *
- * @author HP
+ *Manager class details a manager's name and image
+ * filename and inherits fields from the Person superclass
+ * @author Maria Manauis and Jill Rosacay
+ * @version 1.0
+ * @since 05/09/2023
  */
-public class Manager extends Person implements Advertisable{
-    protected ArrayList<Group> groupsManaged = new ArrayList<>();
+public class Manager extends Person{
+    public double budget;
     
-    public Manager(String n, String i){
+    /** Constructs manager provided with parameters
+    * @param n - String representing the name of the
+    * manager
+    * @param i - String representing the image 
+    * filename of the manager
+    * @param b - Double representing the budget
+    * of the manager
+    */
+    public Manager(String n, String i, double b){
         super(n, i);
         name = n;
         imgFileName = i;
+        budget = b;
     }
     
-    public void checkGroupsManaged(){
-        for(Group i : groupsManaged){
-            System.out.print("You are currently handling: ");
-            System.out.println(i.getName());
-        }   
+    public double getBudget(){
+        return budget;
     }
     
-    public void addGroupToManage(Group newGroup){
-        groupsManaged.add(newGroup);
+    public double updateBudget(double b){
+        budget += b;
+        return budget;
     }
     
-    public void addMemberToGroup(Group group, Member newMember){
-        group.memberList.add(newMember);
-        System.out.println(newMember.getName() + " has been added to " + group.getName() + ".");
-    }
-    
-    public void arrangeCollab(Member member, Member otherMember){
-        System.out.println("You've reached out to " + otherMember.getName() + " for a collaboration with " + member.getName() + ".");
+    public boolean arrangeCollab(JFrame frame, Member member, Member otherMember){
+        JOptionPane.showMessageDialog(frame, "You've reached out to " + otherMember.getName() + " for a collaboration with " + member.getName() + ".");
         int random = (int) Math.floor(Math.random()*10) + 1;
-        if(random / 2 == 0) System.out.println("They have agreed to the collaboration!");
-        else System.out.println("Unfortunately, they have disagreed to the collaboration. Kindly select a different artist.");
+        if(random / 2 == 0){ JOptionPane.showMessageDialog(frame, "They have agreed to the collaboration!"); return true;}
+        else{ JOptionPane.showMessageDialog(frame, "Unfortunately, they have disagreed to the collaboration. Kindly select a different artist."); return false;}
     }
     
-    public void arrangeCollab(Member member, Group group){
-        System.out.println("You've reached out to " + group.getName() + " for a collaboration with " + member.getName() + ".");
+    public boolean arrangeCollab(JFrame frame, Member member, Group group){
+        JOptionPane.showMessageDialog(frame, "You've reached out to " + group.getName() + " for a collaboration with " + member.getName() + ".");
         int random = (int) Math.floor(Math.random()*10) + 1;
-        if(random / 2 == 0) System.out.println("They have agreed to the collaboration!");
-        else System.out.println("Unfortunately, they have disagreed to the collaboration. Kindly select a different artist.");
+        if(random / 2 == 0){ JOptionPane.showMessageDialog(frame, "They have agreed to the collaboration!"); return true;}
+        else{ JOptionPane.showMessageDialog(frame, "Unfortunately, they have disagreed to the collaboration. Kindly select a different artist."); return false;}
     }
     
-    public void arrangeCollab(Group group, Group otherGroup){
-        System.out.println("You've reached out to " + otherGroup.getName() + " for a collaboration with " + group.getName() + ".");
+    public boolean arrangeCollab(JFrame frame, Group group, Group otherGroup){
+        JOptionPane.showMessageDialog(frame, "You've reached out to " + otherGroup.getName() + " for a collaboration with " + Group.getOwnName() + ".");
         int random = (int) Math.floor(Math.random()*10) + 1;
-        if(random / 2 == 0) System.out.println("They have agreed to the collaboration!");
-        else System.out.println("Unfortunately, they have disagreed to the collaboration. Kindly select a different artist.");
+        if(random / 2 == 0){ JOptionPane.showMessageDialog(frame, "They have agreed to the collaboration!"); return true;}
+        else{ JOptionPane.showMessageDialog(frame, "Unfortunately, they have disagreed to the collaboration. Kindly select a different artist."); return false;}
     }
     
-    public void arrangeCollab(Group group, Member member){
-        System.out.println("You've reached out to " + member.getName() + " for a collaboration with " +group.getName() + ".");
+    public boolean arrangeCollab(JFrame frame, Group group, Member member){
+        JOptionPane.showMessageDialog(frame, "You've reached out to " + member.getName() + " for a collaboration with " + Group.getOwnName() + ".");
         int random = (int) Math.floor(Math.random()*10) + 1;
-        if(random / 2 == 0) System.out.println("They have agreed to the collaboration!");
-        else System.out.println("Unfortunately, they have disagreed to the collaboration. Kindly select a different artist.");
+        if(random / 2 == 0){ JOptionPane.showMessageDialog(frame, "They have agreed to the collaboration!"); return true;}
+        else{ JOptionPane.showMessageDialog(frame, "Unfortunately, they have disagreed to the collaboration. Kindly select a different artist."); return false;}
     }
     
-    public void evaluateGroup(float a){
-        // to be discussed
-    }
-    
-    public void evaluateMember(float a){
-        // to be discussed
-    }
-    
-    public void promote(){
-        // to be discussed
-    }
 }

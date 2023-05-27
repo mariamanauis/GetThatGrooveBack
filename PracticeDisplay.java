@@ -13,21 +13,26 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.util.ArrayList;
+import java.io.*;
 
 public class PracticeDisplay extends JFrame implements ActionListener, MouseListener{
     private JPanel main, southPanel, northPanel;
     private JLabel scoreText, title;
-    private int status, score, moneyEarned, noOfMatches;
+    private int status, score, noOfMatches;
+    private double moneyEarned, budget;
     private Card[] cards = new Card[16];
     private ImageIcon[] icons = new ImageIcon[8];
     private Card flipped1, flipped2;
     private boolean won;
+    public Manager player;
     
-    public PracticeDisplay(){
+    public PracticeDisplay(Manager m){
         super("Get That Groove Back!");
         initializeComponents();
         initializeIcons();
         initializeGame();
+        
+        player = m;
     }
     
     public void initializeComponents(){
@@ -111,11 +116,11 @@ public class PracticeDisplay extends JFrame implements ActionListener, MouseList
         }
     }
     
-    public void check(){
+    public void check() throws IOException{
         if (flipped1 != flipped2 && flipped1.getImage() == flipped2.getImage()){
             flipped1.removeActionListener(this);
             flipped2.removeActionListener(this);
-            score += 50;
+            score += 30;
             scoreText.setText("Score: " + score);
             noOfMatches +=2;
             if(noOfMatches == cards.length){
@@ -126,19 +131,18 @@ public class PracticeDisplay extends JFrame implements ActionListener, MouseList
             if (won){
                 if(score > 0){
                     JOptionPane.showMessageDialog(main, "You Won! You earned " + score + " pesos!");
-                    moneyEarned = score;
-                    //budget += moneyEarned; 
+                    moneyEarned = player.updateBudget(score);
+                    player = new Manager("Player", "placeholder.png", moneyEarned);
                     this.dispose();
-                    JFrame window = new MainMenuDisplay();
-                    window.setVisible(true);
-                    
+                    JFrame window = new MainMenuDisplay(player);
+                    window.setVisible(true);      
                 }
                 else{
                     JOptionPane.showMessageDialog(main, "You Lost! You lost " + score*-1 + " pesos!");
-                    moneyEarned = score*-1;
-                    //budget -= moneyEarned;
+                    moneyEarned = player.updateBudget(score);
+                    player = new Manager("Player", "placeholder.png", moneyEarned);
                     this.dispose();
-                    JFrame window = new MainMenuDisplay();
+                    JFrame window = new MainMenuDisplay(player);
                     window.setVisible(true);
                 }
             }
@@ -152,6 +156,7 @@ public class PracticeDisplay extends JFrame implements ActionListener, MouseList
             scoreText.setText("Score: " + score);
         }
     }
+    
    
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -235,5 +240,4 @@ public class PracticeDisplay extends JFrame implements ActionListener, MouseList
     public void mouseExited(MouseEvent e) {
         
     }
-    
 }

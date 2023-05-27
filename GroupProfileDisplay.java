@@ -20,9 +20,12 @@ public class GroupProfileDisplay extends JFrame{
     private static int maxCols = 3;
     private static int maxRows = 2;
     private ArrayList<Member> memberList = Group.getMembers();
+    private Manager player;
     
-    public GroupProfileDisplay(){
+    public GroupProfileDisplay(Manager p){
         super("Get That Groove Back!");
+        
+        player = p;
         
         this.setLayout(new BorderLayout(10, 10));
         this.getContentPane().setBackground(new java.awt.Color(207, 233, 241));
@@ -87,7 +90,7 @@ public class GroupProfileDisplay extends JFrame{
         this.add(centerPanel, BorderLayout.CENTER);
         this.add(southPanel, BorderLayout.SOUTH);
         
-        controller = new GroupProfileController(this, fandomCount, name, fandomName, popularityPoints, back);
+        controller = new GroupProfileController(this, fandomCount, name, fandomName, popularityPoints, back, player);
         back.addActionListener(controller);
         name.addMouseListener(controller);
         popularityPoints.addMouseListener(controller);

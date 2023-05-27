@@ -62,11 +62,10 @@ public class ReservingEventController implements MouseListener, ActionListener{
                JOptionPane.showMessageDialog(frame, "The event was a blast! " + "Budget: " + budget);
                budgetText.setText("Budget: " + budget);
                
-               int random = (int) Math.floor(Math.random()*500) + 1;
-               int pop = (int) (random - (cost / 4));
-               Group.addOwnPopularityPoints(pop);
+               int random = (int) Math.floor(Math.random()*300) + 1;
+               Group.addOwnPopularityPoints(random);
                
-               int fans = pop / 2;
+               int fans = random / 2;
                Group.addOwnNoOfFans(fans);
                
                player = new Manager("player", "placeholder.png", budget);
@@ -78,6 +77,26 @@ public class ReservingEventController implements MouseListener, ActionListener{
             else{
                 player = new Manager("player", "placeholder.png", budget); 
                 JOptionPane.showMessageDialog(frame, "Oh no! You don't have enough money to book this event!");
+            }
+            
+            if(Group.getOwnPopularityPoints() >= 5000 && player.getBudget() >= 3000){
+                if(!Group.getConcertStatus()){
+                    Group.setConcertStatus(true);
+                    JOptionPane.showMessageDialog(frame, "Congratulations Congratulations! " + Group.getOwnName() + " is ready hold"
+                          + " their own concert!");
+                    int result = JOptionPane.showConfirmDialog(null, "Do you wish to keep playing?");
+                    switch (result) {
+                       case JOptionPane.YES_OPTION:
+                       break;
+                       case JOptionPane.NO_OPTION:
+                       System.exit(0);
+                       break;
+                       case JOptionPane.CANCEL_OPTION:
+                       break;
+                       case JOptionPane.CLOSED_OPTION:
+                       break;
+                    }
+                }
             }
         }
         if(e.getSource() == back){

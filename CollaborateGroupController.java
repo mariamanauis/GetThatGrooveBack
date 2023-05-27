@@ -6,9 +6,7 @@ package getthatgrooveback;
 
 import java.awt.event.*;
 import java.awt.*;
-import java.util.ArrayList;
 import javax.swing.*;
-import javax.swing.border.*;
 /**
  *
  * @author Jillian
@@ -95,29 +93,52 @@ public class CollaborateGroupController implements MouseListener, ActionListener
             openDetails(g);
         }
         if(e.getSource() == collaborate){
-            budget = player.getBudget();
             Group g = Group.searchGroup(source.getText());
+            Group holder = Group.searchOwnGroup(Group.getOwnName());
+            
+            budget = player.getBudget();
             cost = g.getCost();
             if(budget >= cost){
-               budget -= cost;
-               JOptionPane.showMessageDialog(frame, "The collab was a blast! " + "Budget: " + budget);
-               budgetText.setText("Budget: " + budget);
-               
-               int random = (int) Math.floor(Math.random()*500) + 1;
-               int pop = (int) (random - (cost / 4));
-               Group.addOwnPopularityPoints(pop);
-               
-               int fans = pop / 2;
-               Group.addOwnNoOfFans(fans);
-               
-               player = new Manager("player", "placeholder.png", budget);
-               frameBox.dispose();
-               JFrame window = new CollaborateGroupPartyDisplay(collabParty, player);
-               window.setVisible(true);
+                if(player.arrangeCollab(frame, holder, g)){
+                    budget -= cost;
+                    JOptionPane.showMessageDialog(frame, "The collab was a blast! " + "Budget: " + budget);
+                    budgetText.setText("Budget: " + budget);
+                    
+                    int random = (int) Math.floor(Math.random()*500) + 1;
+                    Group.addOwnPopularityPoints(random);
+
+                    int fans = random / 2;
+                    Group.addOwnNoOfFans(fans);
+
+                    player = new Manager("player", "placeholder.png", budget);
+                    frameBox.dispose();
+                    JFrame window = new CollaborateGroupPartyDisplay(collabParty, player);
+                    window.setVisible(true);
+                }
             }
             else{
                 player = new Manager("player", "placeholder.png", budget); 
                 JOptionPane.showMessageDialog(frame, "Oh no! You don't have enough money to collaborate with this group!");
+            }
+            
+            if(Group.getOwnPopularityPoints() >= 5000 && player.getBudget() >= 3000){
+                if(!Group.getConcertStatus()){
+                    Group.setConcertStatus(true);
+                    JOptionPane.showMessageDialog(frame, "Congratulations Congratulations! " + Group.getOwnName() + " is ready hold"
+                          + " their own concert!");
+                    int result = JOptionPane.showConfirmDialog(null, "Do you wish to keep playing?");
+                    switch (result) {
+                       case JOptionPane.YES_OPTION:
+                       break;
+                       case JOptionPane.NO_OPTION:
+                       System.exit(0);
+                       break;
+                       case JOptionPane.CANCEL_OPTION:
+                       break;
+                       case JOptionPane.CLOSED_OPTION:
+                       break;
+                    }
+                }
             }
         }
         if(e.getSource() == back){
